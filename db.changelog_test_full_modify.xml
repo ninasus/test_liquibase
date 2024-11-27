@@ -1,0 +1,27 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="root (generated)" id="1732709356772-3">
+        <createIndex indexName="IX_car" schemaName="dbo" tableName="car">
+            <column name="mark"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="root (generated)" id="1732709356772-4">
+        <createView fullDefinition="false" schemaName="dbo" viewName="vCarOwner">SELECT        c.mark, c.model, c.prod_year, p.name + '  ' + p.surname AS owner
+FROM            dbo.car AS c INNER JOIN
+                         dbo.person AS p ON c.ownerId = p.id</createView>
+    </changeSet>
+    <changeSet author="root (generated)" id="1732709356772-5">
+        <addColumn schemaName="dbo" tableName="car">
+            <column name="description" type="varchar(MAX)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="root (generated)" id="1732709356772-6">
+        <dropTable schemaName="test" tableName="testTable"/>
+    </changeSet>
+    <changeSet author="root (generated)" id="1732709356772-1">
+        <modifyDataType columnName="mark" newDataType="varchar(512)" schemaName="dbo" tableName="car"/>
+    </changeSet>
+    <changeSet author="root (generated)" id="1732709356772-2">
+        <modifyDataType columnName="model" newDataType="varchar(512)" schemaName="dbo" tableName="car"/>
+    </changeSet>
+</databaseChangeLog>
